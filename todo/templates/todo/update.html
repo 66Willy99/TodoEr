@@ -7,7 +7,11 @@
     <label for="description">Description</label>
     <input type="text" name="description" id="description" value="{{ request.form['description'] or todo['description'] }}" required>
     <label for="completed">Completed</label>
-    <input type="checkbox" name="completed" id="completed" {% if todo['completed'] %} checked {% endif %}>
+    <input type="checkbox" name="completed" id="completed" {% if todo['completed'] == 1 %} checked {% endif %}>
     <button type="submit" value="update">Update</button>
 </form>
+<form action="{{ url_for('todo.delete', id=todo['id'])}}" method="post">
+    <button class="danger" type="submit" value="delete" onclick="return confirm('You sure you want to delete this Task?')">Delete</button>
+</form>
+
 {% endblock%}
